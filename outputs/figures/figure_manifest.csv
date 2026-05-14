@@ -1,0 +1,6 @@
+figure,path
+scenario_comparison_bars.png,../outputs/figures/scenario_comparison_bars.png
+timeseries_overlay.png,../outputs/figures/timeseries_overlay.png
+country_layer_heatmap_baseline.png,../outputs/figures/country_layer_heatmap_baseline.png
+country_layer_heatmap_damped.png,../outputs/figures/country_layer_heatmap_damped.png
+vulnerability_absorption_scatter.png,../outputs/figures/vulnerability_absorption_scatter.png

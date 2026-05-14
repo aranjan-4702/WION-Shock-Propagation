@@ -1,0 +1,5 @@
+file,rows
+robustness_scenario_summary.csv,5
+robustness_scale_sweep.csv,25
+robustness_bootstrap_draws.csv,5
+robustness_bootstrap_summary.csv,5

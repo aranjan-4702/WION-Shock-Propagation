@@ -1,0 +1,9 @@
+Scenario,Base Mean RL,Damp Mean RL,Mean Absorption
+Energy: RUS petroleum refining,0.0541,0.0074,0.0467
+Energy: Full Russia collapse,0.0875,0.0211,0.0663
+Energy: Ukraine war proxy,0.0665,0.0103,0.0561
+Oil: OPEC-style extraction shock,0.1019,0.0235,0.0784
+Financial: 2008-style US+UK+IRL finance,0.0281,0.0031,0.0250
+Food: Major agricultural exporters shock,0.0223,0.0027,0.0196
+Tech: Semiconductor shock CHN+KOR+TWN,0.2610,0.0188,0.2422
+COVID: Global transport + hospitality shutdown,0.6643,0.1189,0.5454

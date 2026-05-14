@@ -1,0 +1,93 @@
+
+Infrastructure
+
+Conda environment wion (Python 3.11)
+VSCode configured with WION Model kernel
+Project structure at wion-shock-model/
+
+Files written and working:
+
+config.py — paths, FD_CODES, NON_NODE_ROWS, ALPHA=0.30, TAU parameters, raw_data_path()
+src/data/loader.py — loads Z, F, X from raw CSV. Excludes FD columns, NON_NODE_ROWS, and _T sectors
+src/network/builder.py — builds A, B matrices. Zero-output removal. Over-unity warning.
+notebooks/00_eda.ipynb — exploratory analysis (in progress)
+main.py — testing file
+
+Current matrix dimensions: 3928 × 3928
+Key data decisions made:
+
+_T sectors (household own-use activities) removed — not market transactions, no cross-border supply relationships
+X computed as row sum of Z + F — not taken from OUT column in CSV
+3 over-unity sectors (CYP_H51, ISL_C21, LVA_B09) retained — economically justified by inventory accumulation
+input_dist = A normalized column-wise = share of j's intermediate inputs from i
+
+
+EDA findings (00_eda.ipynb)
+Matrix structure:
+
+3928 active production nodes after _T removal
+Non-zero entries: 9,740,932 out of 15,441,984 total
+Sparsity: 0.39 at raw level but economically misleading
+
+Input share distribution:
+
+Median non-zero share = 0.0000017 — extremely skewed
+90th percentile = 0.00012 — 90% of links carry less than 0.01% of inputs
+Fat-tailed, not pure power law, not log-normal — mixture distribution
+On average 27 suppliers needed to cover 80% of inputs per sector
+
+Degree analysis (TAU = 0.001 for topology):
+
+Out-degree: power law with γ ≈ 1.40 (stable at k > 30 and k > 50)
+In-degree: does not follow power law — negative binomial at TAU=0.001 (dispersion=8.40), approximately normal at TAU=0.01 (dispersion=1.05, μ=15.6, σ=4.0)
+Strong asymmetry: supply side scale-free, demand side uniform
+
+Top supply hubs identified:
+
+By out-degree (TAU=0.01): USA_G, CHN_C26, CHN_C24A, RUS_G, DEU_G
+By eigenvector centrality: USA_K, USA_M, USA_N, USA_G, ROW_B06
+By PageRank: USA_M, USA_K, ROW_B06, USA_G, USA_N
+Three-pole structure confirmed: USA services, China manufacturing, European cluster
+
+Giant component:
+
+Fully connected (S/N=1.0) at all TAU up to 0.02
+Fragments faster than Erdős-Rényi at TAU=0.10 — hub-and-spoke structure causes super-critical fragility
+Network is robust to diffuse disruptions but fragile to hub failures
+
+TAU decisions:
+
+TAU = 0.001 for topology analysis (degree distribution, centrality, giant component)
+TAU = 0.01 for fragility and shock propagation (material supply relationships only)
+
+
+Theoretical framework
+Baseline model — inspired by Laber et al. (2023):
+x(t+1)=A⋅x(t)x(t+1) = A \cdot x(t)x(t+1)=A⋅x(t)
+Fixed technical coefficients, no absorption, worst-case propagation.
+Your extension — dynamic operator:
+x(t+1)=M⋅x(t)+fx(t+1) = M \cdot x(t) + fx(t+1)=M⋅x(t)+f
+M=(I−αD)AM = (I - \alpha D) AM=(I−αD)A
+Where:
+
+α = substitution efficiency = 0.30 (from spectral stability sweep)
+D = diagonal matrix of damping coefficients d_j
+f = final demand vector (held constant)
+
+Your novel contribution — institutionally augmented damping:
+dj=(1−Hj)⋅ϕc(j)d_j = (1 - H_j) \cdot \phi_{c(j)}dj​=(1−Hj​)⋅ϕc(j)​
+Where:
+
+H_j = Herfindahl concentration on normalized input shares (input_dist column j)
+φ_c(j) = normalized Logistics Performance Index (LPI) score of country c(j), scaled to [0,1]
+No TAU needed — normalization handles near-zero links naturally
+
+Economic interpretation:
+
+H_j measures structural diversification of sector j's input sourcing
+φ_c captures institutional capacity to actually exercise that diversification
+A sector in a low-institution country is more fragile even if nominally diversified
+Two sectors with identical H_j but different φ_c will have different shock absorption
+
+
+

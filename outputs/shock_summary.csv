@@ -1,0 +1,9 @@
+Scenario,Shocked nodes,Base RL>10%,Base Max RL,Base Mean RL,Damp RL>10%,Damp Max RL,Damp Mean RL,Mean Absorption,Max Absorption,Base AbsLoss t_end,Damp AbsLoss t_end,AbsLoss Reduction t_end,AbsLoss Red% t_end,Base AbsLoss cumulative,Damp AbsLoss cumulative,AbsLoss Reduction cumulative,AbsLoss Red% cumulative,Damp RL>10% (CommonRef),Damp Max RL (CommonRef),Damp Mean RL (CommonRef),Mean Absorption (CommonRef),Max Absorption (CommonRef)
+Energy: RUS petroleum refining,1,359,0.8896,0.0541,56,0.4529,0.0074,0.0467,0.4890,102,23,78,76.99,"818,313","508,567","309,747",37.85,56,0.4529,0.0074,0.0467,0.4890
+Energy: Full Russia collapse,49,943,0.9114,0.0875,167,0.6191,0.0211,0.0663,0.4885,97,13,84,86.49,"811,808","377,772","434,036",53.47,167,0.6191,0.0211,0.0663,0.4885
+Energy: Ukraine war proxy,5,457,0.9721,0.0665,105,0.5082,0.0103,0.0561,0.5407,114,25,89,77.97,"901,436","537,219","364,217",40.40,105,0.5082,0.0103,0.0561,0.5407
+Oil: OPEC-style extraction shock,3,1350,0.9631,0.1019,172,0.7244,0.0235,0.0784,0.4516,143,33,110,77.07,"1,282,425","806,428","475,997",37.12,172,0.7244,0.0235,0.0784,0.4516
+Financial: 2008-style US+UK+IRL finance,3,77,0.5627,0.0281,16,0.3217,0.0031,0.0250,0.3349,51,8,44,85.20,"3,149,410","1,561,663","1,587,746",50.41,16,0.3217,0.0031,0.0250,0.3349
+Food: Major agricultural exporters shock,5,133,0.6299,0.0223,12,0.3445,0.0027,0.0196,0.2855,37,4,33,89.92,"1,349,941","517,021","832,920",61.70,12,0.3445,0.0027,0.0196,0.2855
+Tech: Semiconductor shock CHN+KOR+TWN,3,3855,0.7024,0.2610,89,0.3515,0.0188,0.2422,0.4534,767,79,688,89.74,"5,389,134","2,463,544","2,925,591",54.29,89,0.3515,0.0188,0.2422,0.4534
+COVID: Global transport + hospitality shutdown,405,3523,0.9792,0.6643,1647,0.6563,0.1189,0.5454,0.6897,"1,406",191,"1,215",86.39,"21,472,606","8,856,940","12,615,667",58.75,1647,0.6563,0.1189,0.5454,0.6897
